@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+	</head>
+	<body>
+		<div>
+			<button value="0">企业</button>
+			<button value="1">行业</button>
+		</div>
+		<main></main>
+	</body>
+</html>
+<script type="text/javascript">
+
+	$(function(){
+		
+		$('button').click(function(){
+			var btn=$(this).val()
+			console.log(btn)
+			
+			if(btn==0){
+				$.ajax({
+				type:"post",
+				url:"http://localhost:3000/list",
+				dataType:'json',
+				data:{
+					id:btn
+				},
+				success:function(e){
+					console.log(e)
+					var s=""
+					for(var i in e){
+						s+="<div><p>"+e[i].title+"</p><p>"+e[i].detail+"</p></div>"
+						
+					}
+					$('main').html(s)
+				}
+		});
+			}
+			else{
+				$.ajax({
+				type:"post",
+				url:"http://localhost:3000/list",
+				dataType:'json',
+				data:{
+					id:btn
+				},
+				success:function(e){
+					console.log(e)
+					var s=""
+					for(var i in e){
+						s+="<div><p>"+e[i].title+"</p><p>"+e[i].detail+"</p></div>"
+						
+					}
+					$('main').html(s)
+				}
+		});
+			}
+		})
+		
+	})
+</script>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+		<style type="text/css">
+		.div{
+			width: 800px;
+			height: 800px;
+			margin: 0 auto;
+		}
+			.top{
+				width: 100%;
+				height: 200px;
+				float: left;
+				background: red;
+			}
+			.left{
+				width: 30%;
+				height: 400px;
+				float: left;
+				background: blue;
+			}
+			.right{
+				width: 70%;
+				height: 400px;
+				float: left;
+				background: yellow;
+			}
+			#inp{
+				margin-left: 100px;
+				margin-top: 100px;
+				
+			}
+			#inp1{
+				margin-left: 100px;
+				margin-top: 50px;
+			}
+			#inp2{
+				margin-left: 100px;
+				margin-top: 50px;
+			}
+			#sel{
+				width: 100px;
+				margin-top: 20px;
+				margin-left: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div">
+		<div class="top"></div>
+		<div class="left"></div>
+		<div class="right">
+			标题：<input type="text" name="" id="inp" value="" /><br />
+			名字：<input type="text" name="" id="inp2" value="" /><br />
+			内容：<input type="text" name="" id="inp1" value="" /><br />
+			<select name="" id="sel">
+				<option value="0">企业</option>
+				<option value="1">行业</option>
+			</select>
+			<button id="but">点击</button>
+		</div>
+		</div>
+		
+	</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		$('#but').click(function(){
+			var a=$('#inp').val()
+			var b=$('#inp1').val()
+			var n=$('#inp2').val()
+			var uid=$('select').find('option:selected').val()
+			
+			console.log(a)
+			console.log(b)
+			console.log(n)
+			console.log(uid)
+			
+			$.ajax({
+				url:'http://localhost:3000',
+				type:"POST",
+				data:{
+					id:uid,
+					title:a,
+					name:n,
+					detail:b
+				},
+				success:function(e){
+					console.log(e)
+				}
+			})
+			
+		})
+	})
+</script>
